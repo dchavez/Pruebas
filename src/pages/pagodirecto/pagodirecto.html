@@ -1,0 +1,68 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>VÍA PAGO DIRECTO</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p style="margin: 5px;" class="text-normal" class="text-normal">
+    Para el pago directo pueda realizarse, se requiere:
+  </p>
+
+  <ion-card text-left>
+
+    <p style="margin: 5px;" class="text-normal">
+      1.- Reportar el accidente al call center de red asistencia <strong>01 800 001 2244</strong>.
+    </p>
+
+  </ion-card>
+
+    <ion-card text-left>
+
+      <p style="margin: 5px;" class="text-normal">
+        2.- Proporcionar al call center la siguiente información:<br />
+        <strong>Nombre:</strong> {{userData.NombreCompleto}}<br />
+        <strong>Empresa:</strong> {{userEmpresa.RazonSocial}}<br />
+        <strong># Póliza:</strong> {{userPoliza.ClavePoliza}}<br />
+        <strong>Vigencia de la Póliza:</strong> {{userPoliza.FinVigencia}}
+      </p>
+
+    </ion-card>
+
+    <ion-card text-left>
+
+      <p style="margin: 5px;" class="text-normal">
+        3.- Acudir al centro hospitalario indicando por el call center.
+      </p>
+
+    </ion-card>
+
+  <ion-card text-left>
+
+    <p style="margin: 5px;" class="text-normal">
+      4.- Presentar en el hospital una identificación oficial y el aviso de accidentes requisitado de forma completa para la sección I.
+    </p>
+
+    <ion-grid>
+      <ion-row text-center>
+        <ion-col width-50>
+          <button ion-button color="primary" style="font-size: 14px;" (click)="goMedicalCare()">
+            DESCARGAR<br />AVISO ACCIDENTE
+          </button>
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button color="primary" style="font-size: 14px;" (click)="goCompletarAviso()">
+            COMPLETAR<br />AVISO ACCIDENTE
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>

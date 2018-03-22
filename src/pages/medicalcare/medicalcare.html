@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ATENCIÓN MÉDICA POR ACCIDENTE</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div style="background-color:#FFF;">
+    <ion-row class="logo-row" style="background-color: #1d3a6c;">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="assets/write.png" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <form>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal" >
+              Usted tiene 2 opciones para utilizar la cobertura de Gastos Médicos
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal" color="primary">
+              REEMBOLSO DE GASTOS MÉDICOS <button ion-button type="button" (click)="goReembolso()" style="margin: 0px;padding: 6px;height: 30px;">Ir</button>
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal">
+              El asegurado paga a los prestadores de servicios médicos para la atención de un accidente amparado por la póliza.
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal">
+              En caso de que el accidente sea amparado por la´póliza, AIG reembolsará al asegurado los gastos médicos cubiertos para su atención.
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal" color="primary">
+              VÍA PAGO DIRECTO <button ion-button type="button" (click)="goPagoDirecto()" style="margin: 0px;padding: 6px;height: 30px;">Ir</button>
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal">
+              El asegurado acude al centro hospitalario asignado por AIG para su atención.
+            </p>
+
+            <p style="margin: 5px;    margin-bottom: 10px;" class="text-normal">
+              El asegurado solo paga aquellos gastos que no sean cubiertos por la póliza. <strong color="primary">RECOMENDADO</strong>
+            </p>
+
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+
+</ion-content>

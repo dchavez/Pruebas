@@ -1,0 +1,61 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>REEMBOLSO DE GASTOS MÉDICOS</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p style="margin: 5px;" class="text-normal" class="text-normal">
+    Para el trámite del reembolso de gastos médicos, es necesario presentar en las oficinas de AIG:
+  </p>
+  <ion-card text-left>
+
+    <p style="margin: 5px;" class="text-normal">
+      1.- Formato de aviso de accidente completamente requisitado.
+    </p>
+
+  </ion-card>
+  <ion-grid>
+    <ion-row text-center>
+      <ion-col width-50>
+        <button ion-button color="primary" style="font-size: 14px;" (click)="goMedicalCare()">
+          DESCARGAR<br />AVISO ACCIDENTE
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button ion-button color="primary" style="font-size: 14px;" (click)="goCompletarAviso()">
+          COMPLETAR<br />AVISO ACCIDENTE
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card text-left>
+
+    <p style="margin: 5px;" class="text-normal">
+      2.- Comprobantes originales de los pagos (facturas), los cuales pueden ser expedidos a favor de la persona que solicite el reembolso.
+    </p>
+
+  </ion-card>
+  <ion-card text-left>
+
+    <p style="margin: 5px;" class="text-normal">
+      3.- Los siguientes documentos:<br />
+      -Póliza de seguro<br />
+      -Identificación oficial del asegurado<br />
+      -Formato de identificación del cliente, debidamente llenado y firmado (Art.140)<br />
+      -Información adicional<br />
+    </p>
+
+  </ion-card>
+  <p class="text-normal">
+    El pago deberá de realizarse en 5 días hábiles.<br />
+    Para cualquier duda, favor de llamar al:<br />
+    <strong>01 800 001 2244</strong>
+  </p>
+
+</ion-content>

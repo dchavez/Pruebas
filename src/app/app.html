@@ -1,0 +1,46 @@
+<ion-menu [content]="content" id="mnuMain">
+
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>CAINTRA</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="goHome()">
+        <ion-icon name="md-school"></ion-icon>
+        Inicio
+      </button>
+      <button ion-item (click)="goProfile()">
+        <ion-icon name="md-person"></ion-icon>
+        Perfil
+      </button>
+      <button ion-item (click)="goSchoolPlan()">
+        <ion-icon name="md-school"></ion-icon>
+        PEE
+      </button>
+      <button ion-item (click)="goMedicalCare()">
+        <ion-icon name="ios-medkit-outline"></ion-icon>
+        Seguro
+      </button>
+      <!--<button ion-item menuClose detail-none>
+        <ion-icon name="md-exit"></ion-icon>
+        Cerrar
+      </button>-->
+      <button ion-item>
+        <ion-icon name="md-power" (click)="closeApp()"></ion-icon>
+        Salir
+      </button>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>Logo caintra</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

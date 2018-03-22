@@ -1,0 +1,113 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>REGISTRO DE USUARIO</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <div [hidden]="!step1" style="background-color:#FFF;">
+    <ion-row class="logo-row" style="background-color: #1d3a6c;">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="assets/write.png" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <form>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-label>
+              Por favor ingresa tu R.F.C. para registrar tu información
+            </ion-label>
+            <ion-item>
+              <ion-input type="text" placeholder="# R.F.C." name="" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="button" (click)="next()">CONTINUAR</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step2" style="background-color:#FFF;">
+    <form>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-label>
+              Por favor ingrese la siguiente información
+            </ion-label>
+            <ion-item>
+              <ion-input type="text" placeholder="Número de Teléfono" name="" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Correo Electrónico" name="" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Contraseña" name="" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Confirmar Contraseña" name="" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="button" (click)="create()">CREAR CUENTA</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step3" style="background-color:#FFF;">
+    <ion-row class="logo-row" style="background-color: #1d3a6c;">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="assets/success.png" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <form>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-label>
+              Hola Alan, bienvenido.
+            </ion-label>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="button" (click)="gohome()">CONTINUAR</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+</ion-content>
+
+
+

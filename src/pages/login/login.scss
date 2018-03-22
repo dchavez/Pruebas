@@ -1,0 +1,76 @@
+
+page-login {
+
+  .login-content {
+    background: #f4f4f4;
+    background-image: url("../assets/bglogin.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: 100% auto;
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;*/
+
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    .login-box {
+      background: #f4f4f4;
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+    }
+
+    ion-row {
+      align-items: center;
+      text-align: center;
+    }
+
+    ion-item {
+      /*border-radius: 30px !important;*/
+      padding-left: 30px !important;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      border: 1px solid #ffffff;
+      border-bottom: 0px !important;
+      box-shadow: none !important;
+    }
+
+    .signup-col {
+      margin: 0px 16px 0px 16px;
+      padding-bottom: 20px;
+    }
+
+    .item-inner {
+      /*border-bottom-color: #ffffff !important;*/
+      /*box-shadow: none !important;*/
+    }
+
+    .submit-btn {
+      background: #1d3b6d;
+      font-size: 1.2em;
+      /*border-radius: 30px !important;*/
+      /*border: 1px solid #ffffff;*/
+    }
+
+    .register-btn {
+      background: #5d737b;
+      color: #ffffff;
+      font-size: 1.2em;
+    }
+  }
+
+  .login-footer {
+    background: #1d3b6d;
+
+    .toolbar-background {
+      background: #1d3b6d;
+    }
+
+    .lostpwd-btn {
+      color: #FFF;
+    }
+  }
+}

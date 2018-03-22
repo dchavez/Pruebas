@@ -1,0 +1,78 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>PLAN ESCUELA EMPRESA</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card text-center>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <div text-center>
+          <ion-img width="80px" height="80px" src="assets/peer.png"></ion-img>
+        </div>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-label center>{{userData.NombreCompleto}}</ion-label>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <div text-center>
+          <ion-img width="90px" height="48px" src="assets/logoAIG.png"></ion-img>
+        </div>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <h2 style="color:#1d3a6c;">
+      INSTITUCIÓN ACADÉMICA
+    </h2>
+    <ion-label>{{userData.Universidad}}</ion-label>
+    <ion-label class="aright">Vence el: {{userPoliza.FinVigencia}}</ion-label>
+
+  </ion-card>
+
+  <ion-card text-center>
+    <br />
+
+    <h2 style="color:#1d3a6c;">
+      SERVICIO SOCIAL
+    </h2>
+
+    <ion-row text-left>
+      <ion-col>
+        <ion-label style="color:#1d3a6c;margin: 0;">Empresa</ion-label>
+        <ion-label style="margin: 0;">{{userEmpresa.RazonSocial}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row text-left>
+      <ion-col>
+        <ion-label style="color:#1d3a6c;margin: 0;">Dirección</ion-label>
+        <ion-label style="margin: 0;">{{userEmpresa.Calle}}</ion-label>
+        <ion-label style="margin: 0;">{{userEmpresa.Colonia}}</ion-label>
+        <ion-label style="margin: 0;">{{userEmpresa.Poblacion}}, {{userEmpresa.Estado}} {{userEmpresa.CP}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <div>
+
+    <button ion-button full color="primary" style="" (click)="getPolicy()">
+      VER CONVENIO PEE
+    </button>
+
+  </div>
+
+
+
+
+</ion-content>

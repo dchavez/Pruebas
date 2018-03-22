@@ -1,0 +1,53 @@
+<ion-header no-border>
+
+  <ion-navbar>
+
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title class="center">
+      INICIO
+    </ion-title>
+
+  </ion-navbar>
+
+  <div style="background-color:#1d3b6d; width:100%; padding: 5px; padding-top: 1px;padding-left: 15px;margin:0;">
+    <h2 style="color:#FFF">
+      Bienvenido<br />
+      {{userData.NombreCompleto}}
+    </h2>
+    <ion-label style="color:#FFF"><ion-icon name="ios-phone-portrait-outline"></ion-icon>&nbsp;&nbsp;{{userData.Celular}}</ion-label>
+    <ion-label style="color:#FFF"><ion-icon name="ios-mail-outline"></ion-icon>&nbsp;&nbsp;{{userData.EMail}}</ion-label>
+    <button ion-button small clear style="color:#FFF;float: right;top: -30px;" (click)="goProfile()">Perfil</button>
+  </div>
+
+</ion-header>
+
+<ion-content class="home" nopadding>
+
+  <div style="padding-left:10px;padding-right:10px;color:#1d3b6d">
+    <div style="padding-bottom: 215px;">
+
+      <button class="button-caintra-large left" ion-button (click)="goSchoolPlan()">
+        <ion-img src="assets/logoPEE.png" style="width: 80px; height: 106px; position:absolute;margin-top: -30px;margin-left:0%;"></ion-img>
+        <h4 style="color:#1d3b6d;margin-top: 140px;">Plan Escuela<br />Empresa</h4>
+      </button>
+
+      <button class="button-caintra-large right" ion-button (click)="goAccidentInsurance()">
+        <ion-img src="assets/logoAIG.png" style="width: 90px; height: 50px; position:absolute;margin-top: -20px;margin-left:0%;"></ion-img>
+        <h4 style="color:#1d3b6d;margin-top: 140px;">Seguro de<br />Accidentes</h4>
+      </button>
+
+    </div>
+
+    <div>
+
+      <button ion-button full color="primary" style="padding: 30px;" (click)="goMedicalCare()">
+        ATENCIÓN MÉDICA<br />POR ACCIDENTE
+      </button>
+
+    </div>
+  </div>
+
+</ion-content>
