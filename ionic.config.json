@@ -1,0 +1,7 @@
+{
+  "name": "CAINTRA ADP",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
