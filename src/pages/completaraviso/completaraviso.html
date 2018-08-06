@@ -10,7 +10,262 @@
 <ion-content padding>
 
 
+  <div [hidden]="!step1" style="background-color:#FFF;">
+    <form (ngSubmit)="paso2()" #rec1="ngForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-list inset>
+
+            <h3>
+              Por favor ingrese la siguiente información
+            </h3>
+
+            <ion-row>
+              <ion-col width-67>
+                <img src="assets/step1.png" style="height: 40px;width: auto;" />
+              </ion-col>
+            </ion-row>
+
+            <h3>
+              Datos del Afectado
+            </h3>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Nombre del Afectado" name="NombreAfectado" [(ngModel)]="aviso.NombreAfectado" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" placeholder="Edad del Afectado" name="EdadAfectado" [(ngModel)]="aviso.EdadAfectado" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Nombre del Padre o Madre" name="NombrePadreMadre" [(ngModel)]="aviso.NombrePadreMadre" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Domicilio" name="Domicilio" [(ngModel)]="aviso.Domicilio" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full  type="submit" [disabled]="!rec1.form.valid">SIGUIENTE</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step2" style="background-color:#FFF;">
+    <form (ngSubmit)="paso3()" #rec2="ngForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-list inset>
+
+            <h3>
+              Por favor ingrese la siguiente información
+            </h3>
+
+            <ion-row>
+              <ion-col width-67>
+                <img src="assets/step2.png" style="height: 40px;width: auto;" />
+              </ion-col>
+            </ion-row>
+
+            <h3>
+              Datos del Accidente
+            </h3>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Lugar donde ocurrio el evento" name="LugarAccidente" [(ngModel)]="aviso.LugarAccidente" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Fecha y Hora" name="FechaYHora" [(ngModel)]="aviso.FechaYHora" readonly required (click)="calendar()"></ion-input>
+              <!-- <ion-datetime placeholder="Fecha y Hora" displayFormat="DD-MMM-YYYY HH:mm" [(ngModel)]="aviso.FechaYHora" required></ion-datetime> -->
+            </ion-item>
+            <ion-item>
+              <ion-textarea type="text" placeholder="Descripción detallada del accidente" name="Descripcion" [(ngModel)]="aviso.Descripcion" required></ion-textarea>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!rec2.form.valid">SIGUIENTE</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step3" style="background-color:#FFF;">
+    <form (ngSubmit)="paso4()" #rec3="ngForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-list inset>
+
+            <h3>
+              Por favor ingrese la siguiente información
+            </h3>
+
+            <ion-row>
+              <ion-col width-67>
+                <img src="assets/step3.png" style="height: 40px;width: auto;" />
+              </ion-col>
+            </ion-row>
+
+            <h3>
+              Datos del Jefe Inmediato
+            </h3>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Nombre" name="NombreJefe" [(ngModel)]="aviso.NombreJefe" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Puesto" name="Puesto" [(ngModel)]="aviso.Puesto" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="tel" placeholder="Teléfono" name="Telefono" [(ngModel)]="aviso.Telefono" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="email" placeholder="Correo Electrónico" name="Email" [(ngModel)]="aviso.Email" required></ion-input>
+            </ion-item>
 
 
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!rec3.form.valid">GENERAR AVISO DE ACCIDENTE</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step4" style="background-color:#FFF;">
+    <form (ngSubmit)="paso5()" #rec4="ngForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-list inset>
+
+            <h3>
+              Por favor verifique que la información sea correcta
+            </h3>
+
+            <ion-card text-center>
+              <br />
+
+              <h2 style="color:#1d3a6c;">
+                Datos del Afectado
+              </h2>
+
+              <ion-row text-left>
+                <ion-col>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Nombre: </strong>{{aviso.NombreAfectado}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Edad: </strong>{{aviso.EdadAfectado}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Nombre del Padre o Madre: </strong>{{aviso.NombrePadreMadre}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Domicilio: </strong>{{aviso.Domicilio}}</ion-label>
+                </ion-col>
+              </ion-row>
+
+            </ion-card>
+
+            <ion-card text-center>
+              <br />
+
+              <h2 style="color:#1d3a6c;">
+                Datos del Accidente
+              </h2>
+
+              <ion-row text-left>
+                <ion-col>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Lugar: </strong>{{aviso.LugarAccidente}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Fecha y Hora: </strong>{{aviso.FechaYHora}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Descripción detallada del accidente: </strong>{{aviso.Descripcion}}</ion-label>
+                </ion-col>
+              </ion-row>
+
+            </ion-card>
+
+            <ion-card text-center>
+              <br />
+
+              <h2 style="color:#1d3a6c;">
+                Datos del Jefe Inmediato
+              </h2>
+
+              <ion-row text-left>
+                <ion-col>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Nombre: </strong>{{aviso.NombreJefe}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Puesto: </strong>{{aviso.Puesto}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Teléfono: </strong>{{aviso.Telefono}}</ion-label>
+                  <ion-label style="margin: 0;" text-uppercase text-wrap><strong>Correo Electrónico: </strong>{{aviso.Email}}</ion-label>
+                </ion-col>
+              </ion-row>
+
+            </ion-card>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!rec4.form.valid">CONFIRMAR INFORMACIÓN</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <div [hidden]="!step5" style="background-color:#FFF;">
+    <ion-row class="logo-row" style="background-color: #1d3a6c;">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="assets/success.png" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <form (ngSubmit)="goHome()" #rec5="ngForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-list inset>
+
+            <h3>
+              El aviso de accidente ha sido enviado por correo electrónico a usted y a su jefe inmediato
+            </h3>
+
+            <ion-row text-left>
+              <ion-col>
+                <ion-label style="margin: 0;" class="text-uppercase"><strong>El aviso de accidente se debe: </strong></ion-label>
+                <ion-label style="margin: 0;" class="text-uppercase">1. Imprimir</ion-label>
+                <ion-label style="margin: 0;" class="text-uppercase">2. Firmar y sellar por su jefe inmediato</ion-label>
+                <ion-label style="margin: 0;" class="text-uppercase">3. Firmar y sellar por usted</ion-label>
+                <ion-label style="margin: 0;" class="text-uppercase">4. Entregar en el centro hospitalario asignado por el call center</ion-label>
+              </ion-col>
+            </ion-row>
+
+            <h4 text-left>
+              Para cualquier duda, favor de llamar al:<br /> <strong>01 800 001 2244</strong>
+            </h4>
+
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!rec5.form.valid">ACEPTAR</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
 
 </ion-content>

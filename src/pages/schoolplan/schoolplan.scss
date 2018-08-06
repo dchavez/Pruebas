@@ -2,4 +2,12 @@ page-schoolplan {
   .aright {
     float: right !important;
   }
+  .select {
+    max-width: 100%;
+    padding-left: 5px;
+    border: 1px solid #2f4b79;
+  }
+  .item-md {
+    padding-left: 0px;
+  }
 }

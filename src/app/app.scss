@@ -1,4 +1,4 @@
-// http://ionicframework.com/docs/v2/theming/
+// http://ionicframework.com/docs/theming/
 
 
 // App Global Sass
@@ -16,3 +16,29 @@
 // automatically applied to the <body> element in the app.
 
 $background-color : "#f4f4f4";
+
+#mnuMain .content {
+  background-image: url(../assets/left.png);
+  background-repeat-y: repeat;
+  background-repeat-x: no-repeat;
+}
+
+#mnuMain .toolbar-background  {
+  background-image: url(../assets/left.png);
+  background-color: #f4f4f4;
+  background-repeat-x: no-repeat;
+  background-repeat-y: repeat;
+  border: 0;
+}
+
+#mnuMain .toolbar-title  {
+  color: #aaa;
+}
+
+#mnuMain button  {
+  color: #aaa;
+  background-color: #f4f4f4;
+  background-image: url(../assets/left.png);
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+}

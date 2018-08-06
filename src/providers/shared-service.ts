@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SharedService {
 
-    constructor(public http: Http) {
+    constructor() {
     }
 
     token: any;
     userData: any = {};
+    policy: any = {};
 
     setToken(token) {
       this.token = token;
@@ -25,6 +25,14 @@ export class SharedService {
 
     getUserData() {
       return this.userData;
+    }
+
+    setPolicy(policySelected) {
+      this.policy = policySelected;
+    }
+
+    getPolicy() {
+      return this.policy;
     }
 
 }

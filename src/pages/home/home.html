@@ -43,7 +43,7 @@
 
     <div>
 
-      <button ion-button full color="primary" style="padding: 30px;" (click)="goMedicalCare()">
+      <button ion-button full color="primary" style="padding: 30px;" (click)="goMedicalCare()" [disabled]="!isvalidissue">
         ATENCIÓN MÉDICA<br />POR ACCIDENTE
       </button>
 

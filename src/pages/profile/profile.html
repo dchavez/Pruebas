@@ -9,4 +9,75 @@
 
 <ion-content padding>
 
+  <div style="background-color:#FFF;">
+    <ion-row class="logo-row" style="background-color: #1d3a6c;">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <ion-icon name="md-person" style="color: #FFF;font-size: 60px;padding-left: 25%;"></ion-icon>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <ion-card text-center [hidden]="showChangePwd">
+      <br />
+
+      <h2 style="color:#1d3a6c;">
+        GENERALES
+      </h2>
+
+      <ion-row text-left>
+        <ion-col>
+          <ion-label style="margin: 0;" class="text-uppercase"><strong>Nombre: </strong>{{userData.NombreCompleto}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase"><strong>RFC: </strong>{{userData.RFC}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase"><strong>Teléfono(s): </strong>{{userData.Celular}} {{userData.Telefono}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase"><strong>E-mail: </strong>{{userData.EMail}}</ion-label>
+          <br />
+          <ion-label style="margin: 0;" class="text-uppercase"><strong>Dirección: </strong><br />{{userData.Calle}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase">Colonia {{userData.Colonia}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase">{{userData.Poblacion}}, {{userData.Estado}}</ion-label>
+          <ion-label style="margin: 0;" class="text-uppercase">Código Postal {{userData.CP}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card>
+
+    <ion-row text-center [hidden]="showChangePwd">
+      <ion-col>
+        <ion-label style="color:#1d3a6c;" (click)="viewChangePwd()">Para cambiar tu contraseña presiona aquí.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-card text-center [hidden]="!showChangePwd">
+      <form (ngSubmit)="changePwd()" #rec1="ngForm">
+        <h2 style="color:#1d3a6c;">
+            Por favor ingresa tu nueva contraseña
+        </h2>
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <ion-item>
+                <ion-input type="text" placeholder="Contraseña" name="pwd" [(ngModel)]="rec.pwd" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Confirma tu Contraseña" name="pwd2" [(ngModel)]="rec.pwd2" required></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="signup-col">
+            <button ion-button color="light" full (click)="showChangePwd=false">CANCELAR</button>
+          </ion-col>
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full  type="submit" [disabled]="!rec1.form.valid">CAMBIAR</button>
+          </ion-col>
+        </ion-row>
+
+      </form>
+    </ion-card>
+
+  </div>
+
 </ion-content>

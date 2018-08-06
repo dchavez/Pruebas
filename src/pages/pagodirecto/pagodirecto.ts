@@ -1,43 +1,57 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, Platform, AlertController, LoadingController, Loading } from 'ionic-angular';
 
-//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-//import { File } from '@ionic-native/file';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileOpener } from '@ionic-native/file-opener';
 
 import { CompletarAvisoPage } from '../completaraviso/completaraviso';
+
+import { UserService } from '../../providers/user-service';
 
 import { SharedService } from '../../providers/shared-service';
 
 declare var cordova: any;
 
 @Component({
-    selector: 'page-pagodirecto',
-    templateUrl: 'pagodirecto.html'
+  selector: 'page-pagodirecto',
+  templateUrl: 'pagodirecto.html'
 })
 export class PagoDirectoPage {
   userData: any = {};
   userEmpresa: any = {};
   userPoliza: any = {};
+  userEmpresas: any = {};
+  userPolizas: any = {};
   token: any = {};
   loading: Loading;
-
   storageDirectory: string = '';
+  selectOptions: any = {};
 
   constructor(
+    public platform: Platform,
     public navCtrl: NavController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
+    public userService: UserService,
     private dataShare: SharedService,
-    public platform: Platform,
-    //private transfer: FileTransfer,
-    //private file: File
+    private transfer: FileTransfer,
+    private fileOpener: FileOpener
   ) {
+    var i = 0;
     this.token = this.dataShare.getToken();
     this.userData = this.dataShare.getUserData().Generales;
-    this.userEmpresa = this.dataShare.getUserData().Empresa;
-    this.userPoliza = this.dataShare.getUserData().Poliza;
-    this.initData();
-
+    this.userEmpresas = this.dataShare.getUserData().Empresas;
+    this.userEmpresa = this.userEmpresas[0];
+    this.userPolizas = this.dataShare.getUserData().Polizas;
+    this.userPoliza = this.userPolizas[0];
+    if(this.userPolizas.length>1){
+      for(i=0;i<this.userPolizas.length;i++){
+        if(this.userPolizas[i].ClavePoliza == this.userEmpresa.ClavePoliza){
+          this.userPoliza = this.userPolizas[i];
+          break;
+        }
+      }
+    }
     this.platform.ready().then(() => {
       if (!this.platform.is('cordova')) {
         return false;
@@ -51,76 +65,103 @@ export class PagoDirectoPage {
       else {
         return false;
       }
-    })
-
+    });
+    this.selectOptions = {
+      title: 'Pólizas',
+      subTitle: 'Selecciona tu póliza...',
+      mode: "md"
+    };
   }
 
-  initData() {
-
+  changeEmpresa(){
+    var i = 0;
+    if(this.userPolizas.length>1){
+      for(i=0;i<this.userPolizas.length;i++){
+        if(this.userPolizas[i].ClavePoliza == this.userEmpresa.ClavePoliza){
+          this.userPoliza = this.userPolizas[i];
+          break;
+        }
+      }
+    }
   }
 
   downloadAvisoAccidente() {
-
+    this.showLoading();
+    var aviso = {
+      Token : this.token,
+      NombreAfectado : this.userData.NombreCompleto,
+      Poliza: this.userPoliza.Poliza,
+      ClavePoliza: this.userPoliza.ClavePoliza
+    };
+    this.userService.getGenerateAvisoEmpty(aviso).subscribe(
+      (data) => {
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        const url = data.Uri; //'http://webapicaintra.segupoliza.com/docs/AvisoAccidentes.pdf';
+        fileTransfer.download(url, this.storageDirectory + 'AvisoAccidentes.pdf').then((entry) => {
+          this.loading.dismiss();
+          this.fileOpener.open(entry.toURL(), 'application/pdf')
+          .then(() => console.log('File is opened'))
+          .catch(e => console.log('Error openening file', e));
+        }, (error) => {
+          this.showInfo("Error al descargar el documento");
+        });
+      },
+      (error) => {
+        this.showError("Error al generar el aviso de accidente.");
+      }
+    )
   }
 
-  //downloadImage(image) {
+  // downloadAvisoAccidente() {
+  //   this.showLoading();
+  //   const fileTransfer: FileTransferObject = this.transfer.create();
+  //   const url = 'http://webapicaintra.segupoliza.com/docs/AvisoAccidentes.pdf';
+  //   fileTransfer.download(url, this.storageDirectory + 'AvisoAccidentes.pdf').then((entry) => {
+  //     this.loading.dismiss();
+  //     this.fileOpener.open(entry.toURL(), 'application/pdf')
+  //       .then(() => console.log('File is opened'))
+  //       .catch(e => console.log('Error openening file', e));
+  //   }, (error) => {
+  //     console.log(error);
+  //     this.showInfo("Error al descargar el documento");
+  //   });
+  // }
 
-  //  this.platform.ready().then(() => {
+  goCompletarAviso() {
+    this.dataShare.setPolicy(this.userPoliza);
+    this.navCtrl.push(CompletarAvisoPage).then(data => {
+      //console.log('Profile', data);
+    }, (error) => {
+      this.showError("Access Denied");
+    });
+  }
 
-  //    const fileTransfer: TransferObject = this.transfer.create();
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Por favor espere...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
 
-  //    const imageLocation = `${cordova.file.applicationDirectory}www/assets/img/${image}`;
+  showError(text) {
+    this.loading.dismiss();
 
-  //    fileTransfer.download(imageLocation, this.storageDirectory + image).then((entry) => {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
-  //      const alertSuccess = this.alertCtrl.create({
-  //        title: `Download Succeeded!`,
-  //        subTitle: `${image} was successfully downloaded to: ${entry.toURL()}`,
-  //        buttons: ['Ok']
-  //      });
-
-  //      alertSuccess.present();
-
-  //    }, (error) => {
-
-  //      const alertFailure = this.alertCtrl.create({
-  //        title: `Download Failed!`,
-  //        subTitle: `${image} was not successfully downloaded. Error code: ${error.code}`,
-  //        buttons: ['Ok']
-  //      });
-
-  //      alertFailure.present();
-
-  //    });
-
-  //  });
-  //}
-
-    goCompletarAviso() {
-      this.navCtrl.push(CompletarAvisoPage).then(data => {
-        console.log('Profile', data);
-      }, (error) => {
-        this.showError("Access Denied");
-      });
-    }
-
-    showLoading() {
-      this.loading = this.loadingCtrl.create({
-        content: 'Por favor espere...',
-        dismissOnPageChange: true
-      });
-      this.loading.present();
-    }
-
-    showError(text) {
-      this.loading.dismiss();
-
-      let alert = this.alertCtrl.create({
-        title: '',
-        subTitle: text,
-        buttons: ['OK']
-      });
-      alert.present(prompt);
-    }
+  showInfo(text) {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }

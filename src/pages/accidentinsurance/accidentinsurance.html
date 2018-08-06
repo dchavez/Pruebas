@@ -10,7 +10,7 @@
 <ion-content padding>
 
 
-  <ion-card text-center>
+  <ion-card text-center center>
 
     <ion-row>
       <ion-col></ion-col>
@@ -33,9 +33,20 @@
       <ion-col></ion-col>
     </ion-row>
     <h2 style="color:#1d3a6c;">
-      NÚMERO DE PÓLIZA
+      NÚMERO DE PÓLIZA <u *ngIf="userPolizas.length>1">(<strong>{{userPolizas.length}}</strong>)</u>
     </h2>
-    <ion-label>{{userPoliza.ClavePoliza}}</ion-label>
+    <ion-label *ngIf="userPolizas.length==1">{{userPoliza.ClavePoliza}}</ion-label>
+    <ion-item *ngIf="userPolizas.length>1" text-center center class="combopolizas">
+    <ion-select
+          [(ngModel)]="userPoliza"
+          [selectOptions]="selectOptions"
+          [multiple]="false"
+    >
+      <ion-option *ngFor="let userPoliza of userPolizas" [value]="userPoliza">{{userPoliza.ClavePoliza}}</ion-option>
+    </ion-select>
+    </ion-item>
+    <ion-label style="color:green;" *ngIf="isActive()">VIGENTE</ion-label>
+    <ion-label style="color:red;" *ngIf="!isActive()">VENCIDA</ion-label>
     <ion-label class="aright">Vence el: {{userPoliza.FinVigencia}}</ion-label>
 
   </ion-card>
@@ -60,7 +71,7 @@
         <ion-label style="margin: 0;">Muerte Accidental</ion-label>
       </ion-col>
       <ion-col>
-        <ion-label style="margin: 0;">$ 200,000.00</ion-label>
+        <ion-label style="margin: 0;">{{userPoliza.SAMuerte}}</ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -68,7 +79,7 @@
         <ion-label style="margin: 0;">Perdidas Orgánicas</ion-label>
       </ion-col>
       <ion-col>
-        <ion-label style="margin: 0;">$ 200,000.00</ion-label>
+        <ion-label style="margin: 0;">{{userPoliza.SAPerdidas}}</ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -76,7 +87,7 @@
         <ion-label style="margin: 0;">Reembolso Gastos Médicos</ion-label>
       </ion-col>
       <ion-col>
-        <ion-label style="margin: 0;">$ 80,000.00</ion-label>
+        <ion-label style="margin: 0;">{{userPoliza.SAReembolso}}</ion-label>
       </ion-col>
     </ion-row>
 
@@ -90,7 +101,7 @@
   </div>
   <div>
 
-    <button ion-button full color="primary" style="padding: 30px;" (click)="goMedicalCare()">
+    <button ion-button full color="primary" style="padding: 30px;" (click)="goMedicalCare()" [disabled]="!isvalidissue">
       ATENCIÓN MÉDICA<br />POR ACCIDENTE
     </button>
 

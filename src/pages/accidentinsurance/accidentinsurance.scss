@@ -2,4 +2,11 @@ page-accidentinsurance {
   .aright {
     float: right !important;
   }
+  .select {
+    max-width: 80%;
+  }
+  .combopolizas .input-wrapper {
+    display: block;
+    border: 1px solid #2f4b79;
+  }
 }

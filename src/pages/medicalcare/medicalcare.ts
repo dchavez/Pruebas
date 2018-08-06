@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { App, MenuController, NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 
+import { HomePage } from '../home/home';
 import { ReembolsoPage } from '../reembolso/reembolso';
 import { PagoDirectoPage } from '../pagodirecto/pagodirecto';
+
+import { SharedService } from '../../providers/shared-service';
 
 import { UserService } from '../../providers/user-service';
 
@@ -12,19 +15,24 @@ import { UserService } from '../../providers/user-service';
 })
 export class MedicalCarePage {
   loading: Loading;
+  userPolizas: any = {};
+  app: any;
 
   constructor(
+    app: App,
     public navCtrl: NavController,
     public menu: MenuController,
     public userService: UserService,
+    private dataShare: SharedService,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController
   ) {
-    this.initData();
-  }
-
-  initData() {
-
+    this.app = app;
+    this.userPolizas = this.dataShare.getUserData().Polizas;
+    if(this.userPolizas.length==0){
+      this.showInfo("Lo sentimos, ya no tienes una póliza vigente.");
+      this.app.getActiveNav().push(HomePage);
+    }
   }
 
   goReembolso() {
@@ -55,6 +63,15 @@ export class MedicalCarePage {
     this.loading.present();
   }
 
+  showInfo(text) {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   showError(text) {
     this.loading.dismiss();
 
@@ -63,7 +80,7 @@ export class MedicalCarePage {
       subTitle: text,
       buttons: ['OK']
     });
-    alert.present(prompt);
+    alert.present();
   }
 
 }

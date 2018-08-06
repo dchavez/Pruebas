@@ -26,7 +26,7 @@
       <ion-col></ion-col>
       <ion-col>
         <div text-center>
-          <ion-img width="90px" height="48px" src="assets/logoAIG.png"></ion-img>
+          <ion-img width="48px" height="48px" style="background-color: transparent;" src="{{logoUni}}"></ion-img>
         </div>
       </ion-col>
       <ion-col></ion-col>
@@ -36,8 +36,7 @@
       INSTITUCIÓN ACADÉMICA
     </h2>
     <ion-label>{{userData.Universidad}}</ion-label>
-    <ion-label class="aright">Vence el: {{userPoliza.FinVigencia}}</ion-label>
-
+    <ion-label class="aright">Vence el: {{userEmpresa.FinVigencia}}</ion-label>
   </ion-card>
 
   <ion-card text-center>
@@ -50,7 +49,16 @@
     <ion-row text-left>
       <ion-col>
         <ion-label style="color:#1d3a6c;margin: 0;">Empresa</ion-label>
-        <ion-label style="margin: 0;">{{userEmpresa.RazonSocial}}</ion-label>
+        <ion-label *ngIf="userEmpresas.length==1"  style="margin: 0;">{{userEmpresa.RazonSocial}}</ion-label>
+        <ion-item *ngIf="userEmpresas.length>1">
+        <ion-select
+              [(ngModel)]="userEmpresa"
+              [selectOptions]="selectOptions"
+              [multiple]="false"
+        >
+          <ion-option *ngFor="let userEmpresa of userEmpresas" [value]="userEmpresa">{{userEmpresa.RazonSocial}}</ion-option>
+        </ion-select>
+        </ion-item>
       </ion-col>
     </ion-row>
     <ion-row text-left>
@@ -66,7 +74,7 @@
 
   <div>
 
-    <button ion-button full color="primary" style="" (click)="getPolicy()">
+    <button ion-button full color="primary" style="" (click)="downloadPEE()">
       VER CONVENIO PEE
     </button>
 

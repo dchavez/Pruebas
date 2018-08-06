@@ -1,3 +1,22 @@
 page-reembolso {
-
+  .btnAviso {
+    font-size: 14px;
+    padding: 5px;
+  }
+  .select {
+    max-width: 80%;
+  }
+  .combopolizas .input-wrapper {
+    display: block;
+    border: 1px solid #2f4b79;
+  }
+  .combopolizas,
+  .combopolizas .item-inner {
+    padding: 5px !important;
+  }
+  @media (max-width: 320px) {
+    .btnAviso {
+      padding: 2px;
+    }
+  }
 }
